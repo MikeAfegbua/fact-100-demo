@@ -1,3 +1,4 @@
+import 'package:fact_100_demo/features/authentication/views/create_account_screen.dart';
 import 'package:fact_100_demo/gen/assets.dart';
 import 'package:fact_100_demo/widgets/buttons.dart';
 import 'package:flutter/material.dart';
@@ -48,7 +49,16 @@ class OnboardingScreen extends StatelessWidget {
               buttonText: 'Create an account',
               backgroundColor: Color(0xff1BB0CE),
               textColor: Colors.black,
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return CreateAccountScreen();
+                    },
+                  ),
+                );
+              },
             ),
 
             SizedBox(height: 20),
@@ -57,7 +67,9 @@ class OnboardingScreen extends StatelessWidget {
               buttonText: 'Login',
               backgroundColor: Colors.black,
               textColor: Color(0xff1BB0CE),
-              onPressed: () {},
+              onPressed: () {
+                debugPrint('login screen');
+              },
             ),
           ],
         ),
