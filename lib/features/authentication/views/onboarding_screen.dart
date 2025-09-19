@@ -4,7 +4,10 @@ import 'package:fact_100_demo/widgets/buttons.dart';
 import 'package:flutter/material.dart';
 
 class OnboardingScreen extends StatelessWidget {
-  const OnboardingScreen({super.key});
+  const OnboardingScreen({required this.title, super.key});
+
+  final String title;
+  static const String routeName = '/onboarding';
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +25,7 @@ class OnboardingScreen extends StatelessWidget {
             ),
             SizedBox(height: 64),
             Text(
-              'Welcome to Fact100',
+              title,
               style: TextStyle(
                 fontFamily: 'roboto',
                 fontSize: 20,
@@ -68,7 +71,7 @@ class OnboardingScreen extends StatelessWidget {
               backgroundColor: Colors.black,
               textColor: Color(0xff1BB0CE),
               onPressed: () {
-                debugPrint('login screen');
+                Navigator.pop(context, 'Elevate your knowledge with FACT100');
               },
             ),
           ],

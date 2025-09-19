@@ -1,32 +1,54 @@
 import 'package:fact_100_demo/features/authentication/views/onboarding_screen.dart';
 import 'package:fact_100_demo/gen/assets.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
+  static const String routeName = '/';
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  String? result;
+
   @override
   void initState() {
     super.initState();
 
-    Future.delayed(Duration(seconds: 3), () {
+    navigateAfterDelay();
+  }
+
+  void navigateAfterDelay() {
+    Future.delayed(Duration(seconds: 3), () async {
       if (mounted) {
-        Navigator.pushReplacement(
-          context,
-          CupertinoPageRoute(
-            builder: (context) {
-              return OnboardingScreen();
-            },
-          ),
-        );
+        result =
+            await Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return OnboardingScreen(title: 'Welcome to Scholarly');
+                    },
+                  ),
+                )
+                as String?;
+
+        setState(() {});
       }
     });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+
+    if (kDebugMode) {
+      print('Disposing SplashScreen');
+    }
+
+    debugPrint('SplashScreen disposed');
   }
 
   @override
@@ -52,7 +74,7 @@ class _SplashScreenState extends State<SplashScreen> {
               ),
               SizedBox(height: 12),
               Text(
-                'FACT100',
+                result ?? 'FACT100',
                 style: TextStyle(
                   fontFamily: 'rockwell',
                   fontSize: 34,
@@ -60,6 +82,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   fontWeight: FontWeight.bold,
                   color: Color(0xffE8F9FC),
                 ),
+                textAlign: TextAlign.center,
               ),
             ],
           ),

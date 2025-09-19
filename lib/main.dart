@@ -33,8 +33,15 @@ class MyApp extends StatelessWidget {
             foregroundColor: Colors.white,
           ),
         ),
+        home: const SplashScreen(),
         themeMode: ThemeMode.light,
-        home: SplashScreen(),
+        // initialRoute: SplashScreen.routeName,
+        // routes: {
+        //   SplashScreen.routeName: (context) => const SplashScreen(),
+        //   OnboardingScreen.routeName:
+        //       (context) =>
+        //           const OnboardingScreen(title: 'Welcome to Scholarly'),
+        // },
       ),
     );
   }
